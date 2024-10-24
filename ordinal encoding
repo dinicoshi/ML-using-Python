@@ -1,0 +1,19 @@
+import pandas as pd
+
+def ordenc(df):
+    datadf = df.select_dtypes(include='data')
+    othdf = df.select_dtypes(exclude='data')
+
+    datacols = datadf.columns
+    uni = pd.DataFrame()
+
+    for i in datacols:
+        uniq = datadf[i].unique()
+        d = {}
+        l = []
+        for j in range(len(uniq)):
+            d[uniq[j]] = j+1
+        l = (d[k] for k in datadf[i])
+        uni[i] = pd.Series(l)
+    
+    return pd.concat([othdf, uni], axis=1)
