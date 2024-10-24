@@ -1,0 +1,6 @@
+import pandas as pd
+
+color = {'Color': ['Red', 'Green', 'Blue', 'Red', 'Yellow', 'Red']}
+oh = pd.DataFrame(color)
+oh_encoded = pd.get_dummies(oh, dtype=int)
+print(oh_encoded)
